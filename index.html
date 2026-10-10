@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>something's coming...</title>
+<title>Something's Coming</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
 <style>
@@ -54,3 +54,47 @@
   #status { font-size: clamp(1.2rem, 3.6vw, 1.6rem); min-height: 1.3em; }
   .shake { animation: shake .35s; }
   @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+  .cursor::after { content: "▌"; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- CUTE BLUE SITE ---------- */
+  #site {
+    display: none; min-height: 100%;
+    background: linear-gradient(180deg, var(--sky) 0%, var(--sky-2) 100%);
+    color: var(--ink); font-family: "Fredoka", system-ui, sans-serif;
+    padding: 48px 16px 64px; position: relative; overflow: hidden;
+  }
+  #site.show { display: block; animation: fadeIn 1s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  .bubble { position: absolute; border-radius: 50%; background: rgba(147,197,253,.35); animation: float 9s ease-in-out infinite; pointer-events: none; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-24px); } }
+
+  .wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+  .presents { text-align: center; text-transform: uppercase; letter-spacing: .18em; font-size: .95rem; color: var(--blue); font-weight: 600; margin: 0; }
+  h1 { text-align: center; font-size: clamp(2.6rem, 10vw, 4.5rem); margin: .2em 0 .1em; color: var(--blue-deep); line-height: 1.05; }
+  h1 .fox { display: inline-block; animation: hop 1.6s ease-in-out infinite; }
+  @keyframes hop { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-14px) rotate(-6deg); } }
+  .tag { text-align: center; color: #475569; margin: 0 0 2rem; font-size: 1.1rem; }
+
+  .card {
+    background: var(--card); border-radius: 22px; padding: 22px 24px; margin-bottom: 18px;
+    box-shadow: 0 6px 0 var(--blue-soft), 0 12px 28px rgba(30,58,138,.08);
+    border: 2px solid #dbeafe;
+  }
+  .card h2 { margin: 0 0 .4rem; font-size: 1.3rem; color: var(--blue); display: flex; align-items: center; gap: .5rem; }
+  .card p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
+
+  .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .class {
+    background: #eff6ff; border-radius: 16px; padding: 14px 16px; border: 2px dashed var(--blue-soft);
+  }
+  .class strong { display: block; color: var(--blue-deep); font-size: 1.1rem; }
+  .class span, .class a { color: #475569; font-size: 1rem; word-break: break-word; }
+  .class a { color: var(--blue); }
+  footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: .95rem; }
+</style>
+</head>
+<body>
+
+<!-- ===== Screen 1: terminal ===== -->
