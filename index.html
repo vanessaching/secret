@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
 <style>
-  /* ============================================================
-     EDIT THESE: password + riddle are in the <script> at the bottom
-     ============================================================ */
   :root {
     --term-bg: #000;
     --term-green: #3cff5a;
@@ -35,7 +32,7 @@
     text-shadow: 0 0 6px rgba(60,255,90,.55);
     transition: opacity .8s ease;
   }
-  #terminal::after { /* scanlines */
+  #terminal::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.25) 2px 4px);
   }
@@ -86,9 +83,7 @@
   .card p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
 
   .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
-  .class {
-    background: #eff6ff; border-radius: 16px; padding: 14px 16px; border: 2px dashed var(--blue-soft);
-  }
+  .class { background: #eff6ff; border-radius: 16px; padding: 14px 16px; border: 2px dashed var(--blue-soft); }
   .class strong { display: block; color: var(--blue-deep); font-size: 1.1rem; }
   .class span, .class a { color: #475569; font-size: 1rem; word-break: break-word; }
   .class a { color: var(--blue); }
@@ -98,3 +93,123 @@
 <body>
 
 <!-- ===== Screen 1: terminal ===== -->
+<div id="terminal">
+  <div class="line cursor" id="coming">something's coming...</div>
+  <div id="riddle">[ riddle goes here ]</div>
+  <form id="pwRow" autocomplete="off">
+    <label for="pw">Enter Password [</label>
+    <input id="pw" type="password" spellcheck="false" autocapitalize="off">
+    <span>]</span>
+  </form>
+  <div id="status"></div>
+</div>
+
+<!-- ===== Screen 2: the reveal ===== -->
+<div id="site">
+  <div class="wrap">
+    <p class="presents">Class Councils Programming presents</p>
+    <h1><span class="fox">🦊</span> Hop Fox Hunt! <span class="fox" style="animation-delay:.3s">🦊</span></h1>
+    <p class="tag">the foxes are hiding… can you find them?</p>
+
+    <div class="card">
+      <h2>📅 Dates</h2>
+      <p>____</p>
+    </div>
+
+    <div class="card">
+      <h2>💡 Information</h2>
+      <p>Check out your respective class page for hints on the foxes' locations!</p>
+    </div>
+
+    <div class="card">
+      <h2>🐾 Class Pages</h2>
+      <div class="classes">
+        <div class="class"><strong>Freshmen</strong><span>____</span></div>
+        <div class="class"><strong>Sophomores</strong><span>____</span></div>
+        <div class="class"><strong>Juniors</strong><span>____</span></div>
+        <div class="class"><strong>Seniors</strong><span>____</span></div>
+      </div>
+    </div>
+
+    <footer>happy hunting 💙</footer>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  //  EDIT THESE
+  // ============================================================
+  const PASSWORD = "hopfox";   // not case-sensitive
+  const RIDDLE   = "[ riddle goes here ]\nI have a tail but I'm not a kite,\nI hide by day and hunt by night...";
+  // ============================================================
+
+  const $ = (id) => document.getElementById(id);
+
+  function typeText(el, text, speed) {
+    return new Promise((resolve) => {
+      let i = 0;
+      (function tick() {
+        el.textContent = text.slice(0, ++i);
+        if (i < text.length) setTimeout(tick, speed); else resolve();
+      })();
+    });
+  }
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  async function intro() {
+    $("coming").textContent = "";
+    $("riddle").textContent = "";
+    $("riddle").classList.add("hidden");
+    $("pwRow").classList.add("hidden");
+    await wait(600);
+    await typeText($("coming"), "something's coming...", 110);
+    await wait(900);
+    $("riddle").classList.remove("hidden");
+    await typeText($("riddle"), RIDDLE, 35);
+    await wait(400);
+    $("pwRow").classList.remove("hidden");
+    $("pw").focus();
+  }
+
+  $("pwRow").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const guess = $("pw").value.trim().toLowerCase();
+    if (guess === PASSWORD.toLowerCase()) {
+      $("pw").disabled = true;
+      await typeText($("status"), "ACCESS GRANTED", 60);
+      await wait(900);
+      $("terminal").style.opacity = 0;
+      await wait(800);
+      $("terminal").remove();
+      document.title = "Hop Fox Hunt!";
+      document.body.style.background = "var(--sky)";
+      $("site").classList.add("show");
+      addBubbles();
+    } else {
+      $("status").textContent = "ACCESS DENIED";
+      $("pwRow").classList.remove("shake");
+      void $("pwRow").offsetWidth;
+      $("pwRow").classList.add("shake");
+      $("pw").value = "";
+      $("pw").focus();
+    }
+  });
+
+  function addBubbles() {
+    const site = $("site");
+    for (let i = 0; i < 14; i++) {
+      const b = document.createElement("div");
+      const s = 30 + Math.random() * 90;
+      b.className = "bubble";
+      b.style.width = b.style.height = s + "px";
+      b.style.left = Math.random() * 100 + "%";
+      b.style.top = Math.random() * 100 + "%";
+      b.style.animationDelay = (Math.random() * -9) + "s";
+      site.appendChild(b);
+    }
+  }
+
+  intro();
+</script>
+</body>
+</html>
