@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Something's Coming</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --term-bg: #000;
@@ -28,7 +28,7 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 2.2rem; padding: 16px;
     background: var(--term-bg); color: var(--term-green);
-    font-family: "VT323", "Courier New", monospace;
+    font-family: "Courier Prime", "Courier New", monospace;
     text-shadow: 0 0 6px rgba(60,255,90,.55);
     transition: opacity .8s ease;
   }
@@ -40,11 +40,11 @@
   #riddle { font-size: clamp(1.2rem, 3.6vw, 1.7rem); max-width: 640px; text-align: center; line-height: 1.35; opacity: .9; white-space: pre-line; min-height: 1.2em; }
   .hidden { visibility: hidden; }
 
-  #pwRow { display: flex; align-items: center; gap: .6rem; font-size: clamp(1.4rem, 4.4vw, 2rem); flex-wrap: wrap; justify-content: center; }
+  #pwRow { display: flex; align-items: center; gap: .5rem; font-size: clamp(1rem, 4vw, 2rem); justify-content: center; white-space: nowrap; }
   #pw {
     background: transparent; border: 1px solid var(--term-green); color: var(--term-green);
     font-family: inherit; font-size: inherit; letter-spacing: .25em;
-    padding: .15em .5em; width: min(14ch, 60vw); outline: none;
+    padding: .15em .5em; width: min(12ch, 34vw); outline: none;
     caret-color: var(--term-green); text-shadow: inherit;
     box-shadow: 0 0 8px rgba(60,255,90,.35) inset;
   }
@@ -58,7 +58,7 @@
   #site {
     display: none; min-height: 100%;
     background: linear-gradient(180deg, var(--sky) 0%, var(--sky-2) 100%);
-    color: var(--ink); font-family: "Fredoka", system-ui, sans-serif;
+    color: var(--ink); font-family: "Quicksand", system-ui, sans-serif;
     padding: 48px 16px 64px; position: relative; overflow: hidden;
   }
   #site.show { display: block; animation: fadeIn 1s ease; }
@@ -69,9 +69,7 @@
 
   .wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
   .presents { text-align: center; text-transform: uppercase; letter-spacing: .18em; font-size: .95rem; color: var(--blue); font-weight: 600; margin: 0; }
-  h1 { text-align: center; font-size: clamp(2.6rem, 10vw, 4.5rem); margin: .2em 0 .1em; color: var(--blue-deep); line-height: 1.05; }
-  h1 .fox { display: inline-block; animation: hop 1.6s ease-in-out infinite; }
-  @keyframes hop { 0%,100% { transform: translateY(0); } 40% { transform: translateY(-14px) rotate(-6deg); } }
+  h1 { text-align: center; font-family: "Pacifico", cursive; font-weight: 400; font-size: clamp(2.6rem, 10vw, 4.5rem); margin: .2em 0 .3em; color: var(--blue-deep); line-height: 1.2; text-wrap: balance; }
   .tag { text-align: center; color: #475569; margin: 0 0 2rem; font-size: 1.1rem; }
 
   .card {
@@ -79,13 +77,14 @@
     box-shadow: 0 6px 0 var(--blue-soft), 0 12px 28px rgba(30,58,138,.08);
     border: 2px solid #dbeafe;
   }
-  .card h2 { margin: 0 0 .4rem; font-size: 1.3rem; color: var(--blue); display: flex; align-items: center; gap: .5rem; }
+  .card h2 { margin: 0 0 .4rem; font-size: 1.3rem; font-weight: 700; color: var(--blue); }
   .card p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
 
   .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
   .class { background: #eff6ff; border-radius: 16px; padding: 14px 16px; border: 2px dashed var(--blue-soft); }
   .class strong { display: block; color: var(--blue-deep); font-size: 1.1rem; }
-  .class span, .class a { color: #475569; font-size: 1rem; word-break: break-word; }
+  .class span, .class a { display: block; color: #475569; font-size: 1rem; word-break: break-word; }
+  .class .ig { color: var(--blue); font-size: .95rem; margin-top: .2rem; }
   .class a { color: var(--blue); }
   footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: .95rem; }
 </style>
@@ -95,7 +94,7 @@
 <!-- ===== Screen 1: terminal ===== -->
 <div id="terminal">
   <div class="line cursor" id="coming">something's coming...</div>
-  <div id="riddle">[ riddle goes here ]</div>
+  <div id="riddle">[riddle placeholder]</div>
   <form id="pwRow" autocomplete="off">
     <label for="pw">Enter Password [</label>
     <input id="pw" type="password" spellcheck="false" autocapitalize="off">
@@ -108,30 +107,30 @@
 <div id="site">
   <div class="wrap">
     <p class="presents">Class Councils Programming presents</p>
-    <h1><span class="fox">🦊</span> Hop Fox Hunt! <span class="fox" style="animation-delay:.3s">🦊</span></h1>
-    <p class="tag">the foxes are hiding… can you find them?</p>
+    <h1>Hop Fox Hunt!</h1>
+    <p class="tag">The foxes are hiding around campus... Can you find them?</p>
 
     <div class="card">
-      <h2>📅 Dates</h2>
+      <h2>Dates</h2>
       <p>____</p>
     </div>
 
     <div class="card">
-      <h2>💡 Information</h2>
+      <h2>Information</h2>
       <p>Check out your respective class page for hints on the foxes' locations!</p>
     </div>
 
     <div class="card">
-      <h2>🐾 Class Pages</h2>
+      <h2>Class Pages</h2>
       <div class="classes">
-        <div class="class"><strong>Freshmen</strong><span>____</span></div>
-        <div class="class"><strong>Sophomores</strong><span>____</span></div>
-        <div class="class"><strong>Juniors</strong><span>____</span></div>
-        <div class="class"><strong>Seniors</strong><span>____</span></div>
+        <div class="class"><strong>Freshmen</strong><span class="ig">[instagram user placeholder]</span></div>
+        <div class="class"><strong>Sophomores</strong><span class="ig">[instagram user placeholder]</span></div>
+        <div class="class"><strong>Juniors</strong><span class="ig">[instagram user placeholder]</span></div>
+        <div class="class"><strong>Seniors</strong><span class="ig">[instagram user placeholder]</span></div>
       </div>
     </div>
 
-    <footer>happy hunting 💙</footer>
+    <footer>happy hunting!</footer>
   </div>
 </div>
 
@@ -140,7 +139,7 @@
   //  EDIT THESE
   // ============================================================
   const PASSWORD = "hopfox";   // not case-sensitive
-  const RIDDLE   = "[ riddle goes here ]\nI have a tail but I'm not a kite,\nI hide by day and hunt by night...";
+  const RIDDLE   = "[riddle placeholder]";
   // ============================================================
 
   const $ = (id) => document.getElementById(id);
