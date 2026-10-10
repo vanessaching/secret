@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>something's coming...</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     EDIT THESE: password + riddle are in the <script> at the bottom
+     ============================================================ */
+  :root {
+    --term-bg: #000;
+    --term-green: #3cff5a;
+    --sky: #e8f4ff;
+    --sky-2: #cfe7ff;
+    --blue: #3b82f6;
+    --blue-deep: #1e3a8a;
+    --blue-soft: #93c5fd;
+    --card: #ffffff;
+    --ink: #1e293b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--term-bg); }
+
+  /* ---------- TERMINAL SCREEN ---------- */
+  #terminal {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.2rem; padding: 16px;
+    background: var(--term-bg); color: var(--term-green);
+    font-family: "VT323", "Courier New", monospace;
+    text-shadow: 0 0 6px rgba(60,255,90,.55);
+    transition: opacity .8s ease;
+  }
+  #terminal::after { /* scanlines */
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.25) 2px 4px);
+  }
+  .line { font-size: clamp(1.6rem, 5vw, 2.6rem); text-align: center; min-height: 1.2em; }
+  #riddle { font-size: clamp(1.2rem, 3.6vw, 1.7rem); max-width: 640px; text-align: center; line-height: 1.35; opacity: .9; white-space: pre-line; min-height: 1.2em; }
+  .hidden { visibility: hidden; }
+
+  #pwRow { display: flex; align-items: center; gap: .6rem; font-size: clamp(1.4rem, 4.4vw, 2rem); flex-wrap: wrap; justify-content: center; }
+  #pw {
+    background: transparent; border: 1px solid var(--term-green); color: var(--term-green);
+    font-family: inherit; font-size: inherit; letter-spacing: .25em;
+    padding: .15em .5em; width: min(14ch, 60vw); outline: none;
+    caret-color: var(--term-green); text-shadow: inherit;
+    box-shadow: 0 0 8px rgba(60,255,90,.35) inset;
+  }
+  #status { font-size: clamp(1.2rem, 3.6vw, 1.6rem); min-height: 1.3em; }
+  .shake { animation: shake .35s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
