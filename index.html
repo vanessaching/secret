@@ -70,6 +70,7 @@
   .wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
   .presents { text-align: center; text-transform: uppercase; letter-spacing: .18em; font-size: .95rem; color: var(--blue); font-weight: 600; margin: 0; }
   h1 { text-align: center; font-family: "Pacifico", cursive; font-weight: 400; font-size: clamp(2.6rem, 10vw, 4.5rem); margin: .2em 0 .3em; color: var(--blue-deep); line-height: 1.2; text-wrap: balance; }
+  h1 .h1-top { display: block; font-family: "Quicksand", system-ui, sans-serif; font-weight: 700; font-size: clamp(1.3rem, 4.5vw, 1.8rem); color: var(--blue); line-height: 1.3; }
   .tag { text-align: center; color: #475569; margin: 0 0 2rem; font-size: 1.1rem; }
 
   .card {
@@ -85,7 +86,8 @@
   .class strong { display: block; color: var(--blue-deep); font-size: 1.1rem; }
   .class span, .class a { display: block; color: #475569; font-size: 1rem; word-break: break-word; }
   .class .ig { color: var(--blue); font-size: .95rem; margin-top: .2rem; }
-  .class a { color: var(--blue); }
+  .class a { color: var(--blue); text-decoration: none; font-weight: 600; }
+  .class a:hover, .class a:focus-visible { text-decoration: underline; }
   footer { text-align: center; margin-top: 2rem; color: #64748b; font-size: .95rem; }
 </style>
 </head>
@@ -107,7 +109,7 @@
 <div id="site">
   <div class="wrap">
     <p class="presents">Class Councils Programming presents</p>
-    <h1>Hop Fox Hunt!</h1>
+    <h1><span class="h1-top">Campus Discovery:</span> HopFox Hunt</h1>
     <p class="tag">The foxes are hiding around campus... Can you find them?</p>
 
     <div class="card">
@@ -117,16 +119,16 @@
 
     <div class="card">
       <h2>Information</h2>
-      <p>Follow your respective class page for hints on the foxes' locations before they go private by [date]!</p>
+      <p>Clues will be posted on the class Instagram pages below. Follow your class page before the accounts go private on November 15th!</p>
     </div>
 
     <div class="card">
       <h2>Class Pages</h2>
       <div class="classes">
-        <div class="class"><strong>Freshmen</strong><span class="ig">[instagram user placeholder]</span></div>
-        <div class="class"><strong>Sophomores</strong><span class="ig">[instagram user placeholder]</span></div>
-        <div class="class"><strong>Juniors</strong><span class="ig">[instagram user placeholder]</span></div>
-        <div class="class"><strong>Seniors</strong><span class="ig">[instagram user placeholder]</span></div>
+        <div class="class"><strong>Freshmen</strong><a class="ig" href="https://www.instagram.com/jhusga30/" target="_blank" rel="noopener">@jhusga30</a></div>
+        <div class="class"><strong>Sophomores</strong><a class="ig" href="https://www.instagram.com/jhusga29/" target="_blank" rel="noopener">@jhusga29</a></div>
+        <div class="class"><strong>Juniors</strong><a class="ig" href="https://www.instagram.com/jhuclassof2028/" target="_blank" rel="noopener">@jhuclassof2028</a></div>
+        <div class="class"><strong>Seniors</strong><a class="ig" href="https://www.instagram.com/jhusga27/" target="_blank" rel="noopener">@jhusga27</a></div>
       </div>
     </div>
 
@@ -180,7 +182,7 @@
       $("terminal").style.opacity = 0;
       await wait(800);
       $("terminal").remove();
-      document.title = "Hop Fox Hunt!";
+      document.title = "Campus Discovery: HopFox Hunt";
       document.body.style.background = "var(--sky)";
       $("site").classList.add("show");
       addBubbles();
