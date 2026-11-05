@@ -81,6 +81,19 @@
   .card h2 { margin: 0 0 .4rem; font-size: 1.3rem; font-weight: 700; color: var(--blue); }
   .card p { margin: 0; font-size: 1.1rem; line-height: 1.5; }
 
+  .card b { color: var(--blue-deep); }
+  .rules { margin: 0; padding-left: 1.2rem; display: grid; gap: .7rem; font-size: 1.05rem; line-height: 1.5; }
+  .rules li::marker { color: var(--blue); }
+  .points { display: flex; gap: 10px; margin-top: .6rem; flex-wrap: wrap; }
+  .points span { flex: 1 1 80px; text-align: center; background: #eff6ff; border: 2px dashed var(--blue-soft); border-radius: 14px; padding: 8px 6px; color: var(--blue); font-weight: 600; }
+  .points b { font-size: 1.5rem; display: block; line-height: 1.1; }
+  .points small { display: block; color: #475569; font-size: .85rem; font-weight: 500; }
+  .schedule { width: 100%; border-collapse: collapse; font-size: 1.05rem; }
+  .schedule th { text-align: left; color: var(--blue); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; padding: 6px 10px; border-bottom: 2px solid #dbeafe; }
+  .schedule td { padding: 10px; border-bottom: 1px dashed #dbeafe; font-variant-numeric: tabular-nums; }
+  .schedule tr:last-child td { border-bottom: 0; }
+  .schedule td:first-child { font-weight: 700; color: var(--blue-deep); }
+
   .classes { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
   .class { background: #eff6ff; border-radius: 16px; padding: 14px 16px; border: 2px dashed var(--blue-soft); }
   .class strong { display: block; color: var(--blue-deep); font-size: 1.1rem; }
@@ -96,7 +109,7 @@
 <!-- ===== Screen 1: terminal ===== -->
 <div id="terminal">
   <div class="line cursor" id="coming">something's coming...</div>
-  <div id="riddle">[riddle placeholder]</div>
+  <div id="riddle">Hey hOPkins, we Figured yOu might want to hear this eXciting announcement...</div>
   <form id="pwRow" autocomplete="off">
     <label for="pw">Enter Password [</label>
     <input id="pw" type="password" spellcheck="false" autocapitalize="off">
@@ -113,8 +126,40 @@
     <p class="tag">The foxes are hiding around campus... Can you find them?</p>
 
     <div class="card">
-      <h2>Dates</h2>
-      <p>____</p>
+      <h2>November 16 &ndash; 20</h2>
+      <p>Keep an eye out for paper foxes hidden around campus! Finding one will win you a soft and lovable fox plushie!</p>
+    </div>
+
+    <div class="card">
+      <h2>Rules of the HopFox Hunt</h2>
+      <ul class="rules">
+        <li>Each morning, we will hide <b>5 paper foxes</b> around campus and release clues to help you find them. (See the clue release schedule below.)</li>
+        <li>These foxes will be approximately <b>4in wide and 5in tall</b>.</li>
+        <li>These foxes will be hidden in publicly accessible locations open to <b>ALL</b> undergraduates.</li>
+        <li>To claim your fox plushie, you must bring the paper fox to the <b>LEED Office by December 2 at 5pm</b>. You will win points for your class in Battle of the Classes by catching the fox!</li>
+        <li>Each fox is worth a certain number of points based on the difficulty of the clue:
+          <div class="points">
+            <span><b>5</b> pts<small>Easy</small></span>
+            <span><b>10</b> pts<small>Medium</small></span>
+            <span><b>15</b> pts<small>Hard</small></span>
+          </div>
+        </li>
+        <li>The clues get harder every day!</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Clue Release Schedule</h2>
+      <table class="schedule">
+        <thead><tr><th>Date</th><th>Clues Released At</th></tr></thead>
+        <tbody>
+          <tr><td>Nov 16</td><td>12pm</td></tr>
+          <tr><td>Nov 17</td><td>12pm</td></tr>
+          <tr><td>Nov 18</td><td>11am</td></tr>
+          <tr><td>Nov 19</td><td>11am</td></tr>
+          <tr><td>Nov 20</td><td>10am</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="card">
@@ -141,7 +186,7 @@
   //  EDIT THESE
   // ============================================================
   const PASSWORD = "hopfox";   // not case-sensitive
-  const RIDDLE   = "[riddle placeholder]";
+  const RIDDLE   = "Hey hOPkins, we Figured yOu might want to hear this eXciting announcement...";
   // ============================================================
 
   const $ = (id) => document.getElementById(id);
